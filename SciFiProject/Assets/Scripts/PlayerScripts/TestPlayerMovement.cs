@@ -9,6 +9,7 @@ public class TestPlayerMovement : MonoBehaviour
     bool isGrounded;
 
     public float speed;
+    public float jumpPower;
 
 	// Use this for initialization
 	void Start ()
@@ -24,7 +25,7 @@ public class TestPlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown (KeyCode.Space))
         {
-            rb.AddForce(Vector3.up);
+            rb.AddExplosionForce(jumpPower, transform.position, 2, 20, ForceMode.Impulse);
         }
 
         transform.Translate(x, 0, z);
