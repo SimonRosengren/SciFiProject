@@ -6,6 +6,7 @@ public class TestPlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
     Vector3 direction;
+    bool isGrounded;
 
     public float speed;
 
@@ -20,6 +21,11 @@ public class TestPlayerMovement : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+
+        if (Input.GetKeyDown (KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up);
+        }
 
         transform.Translate(x, 0, z);
     }
