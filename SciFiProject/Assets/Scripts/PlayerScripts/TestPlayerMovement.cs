@@ -27,7 +27,7 @@ public class TestPlayerMovement : MonoBehaviour
         if (Input.GetKeyDown (KeyCode.Space))
         {
             //rb.AddExplosionForce(jumpPower, transform.position, 2, 20, ForceMode.Impulse);
-            rb.AddForce(0, 300, 0);
+            rb.AddForce(0, 400, 0);
         }
 
         transform.Translate(x, 0, z);
