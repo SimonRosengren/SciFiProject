@@ -23,6 +23,7 @@ public class TestPlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
+        Debug.Log("HALLÅ Där");
         if (Input.GetKeyDown (KeyCode.Space))
         {
             //rb.AddExplosionForce(jumpPower, transform.position, 2, 20, ForceMode.Impulse);
