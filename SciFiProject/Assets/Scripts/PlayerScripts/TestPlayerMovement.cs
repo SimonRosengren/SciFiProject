@@ -6,10 +6,14 @@ public class TestPlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
     Vector3 direction;
+
     bool isGrounded;
+    bool grabing;
 
     public float speed;
     public float jumpPower;
+    public float reach;
+
 
 	// Use this for initialization
 	void Start ()
@@ -23,13 +27,29 @@ public class TestPlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
-        Debug.Log("HALLÅ Där");
         if (Input.GetKeyDown (KeyCode.Space))
         {
-            //rb.AddExplosionForce(jumpPower, transform.position, 2, 20, ForceMode.Impulse);
             rb.AddForce(0, 200, 0);
         }
-
+        if (Input.GetButtonDown("Grab"))
+        {
+            grabing = true;
+            Grab();
+        }
         transform.Translate(x, 0, z);
+    }
+    void FixedUpdate()
+    {
+
+    }
+    public void Grab()
+    {
+        RaycastHit hit;
+        Vector3 fwd = transform.TransformDirection(Vector3.right);
+        Debug.DrawRay(transform.position, fwd);
+        if (Physics.Raycast(new Ray(transform.position, fwd), out hit, 1000f))
+            print("There is a " + hit.transform.tag + "in front of the object!");
+        else
+            Debug.Log("Nothing!");
     }
 }
