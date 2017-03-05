@@ -14,9 +14,10 @@ public class TestPlayerMovement : MonoBehaviour
     public float jumpPower;
     public float reach;
 
+    public GameObject currentRoom; //reference to the room currently used by the player
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         rb = GetComponent<Rigidbody>();	
 	}

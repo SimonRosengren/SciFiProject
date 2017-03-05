@@ -1,0 +1,43 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TestCameraBehaviour : MonoBehaviour {
+
+
+    public GameObject player; //reference to player
+    private TestPlayerMovement playerScript;
+    private GameObject currentRoom;
+
+    private float acceleration = 9.82f;
+    private float maxSpeed = 20;
+
+    
+    
+
+	// Use this for initialization
+	void Start ()
+    {
+        
+	}
+	
+	// Update is called once per frame
+	void Update ()
+    {
+        transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+	}
+
+    // Called at the end of frame
+    private void LateUpdate()
+    {
+        currentRoom = playerScript.currentRoom;
+        Vector3 roomCenter = currentRoom.GetComponent<Renderer>().bounds.center;
+        
+    }
+
+    // Moves the camera to a new position
+    private void MoveToPosition()
+    {
+
+    }
+}
