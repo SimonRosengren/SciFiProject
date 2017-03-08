@@ -8,11 +8,12 @@ public class TestPlayerMovement : MonoBehaviour
     Vector3 direction;
 
     bool isGrounded;
-    bool grabing;
+
+    GameObject grabbedItem;
 
     public float speed;
     public float jumpPower;
-    public float reach;
+    public float reach = 200.3f;
 
     public GameObject currentRoom; //reference to the room currently used by the player
 
@@ -32,12 +33,16 @@ public class TestPlayerMovement : MonoBehaviour
         {
             rb.AddForce(0, 200, 0);
         }
-        if (Input.GetButtonDown("Grab"))
+        if (Input.GetButtonUp("Grab"))
         {
-            grabing = true;
+            grabbedItem = null; //Reset the grabbed item
+        }
+        if (Input.GetButton("Grab"))
+        {
             Grab();
         }
-        transform.Translate(x, 0, z);
+        transform.Translate(0, 0, x);
+
     }
     void FixedUpdate()
     {
@@ -46,11 +51,20 @@ public class TestPlayerMovement : MonoBehaviour
     public void Grab()
     {
         RaycastHit hit;
-        Vector3 fwd = transform.TransformDirection(Vector3.right);
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
         Debug.DrawRay(transform.position, fwd);
-        if (Physics.Raycast(new Ray(transform.position, fwd), out hit, 1000f))
-            print("There is a " + hit.transform.tag + "in front of the object!");
-        else
-            Debug.Log("Nothing!");
+        if (Physics.Raycast(new Ray(transform.position, fwd), out hit, reach))
+        {
+            if (hit.transform.tag == "Grabable")
+            {
+                grabbedItem = hit.transform.gameObject;
+                grabbedItem.transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+            }
+        }
+
+        if (grabbedItem != null)
+        {
+            grabbedItem.transform.position = new Vector3(transform.position.x + 1, transform.position.y + 1, transform.position.z);
+        }
     }
 }
