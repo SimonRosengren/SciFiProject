@@ -31,8 +31,8 @@ public class TestCameraBehaviour : MonoBehaviour {
     {
         currentRoom = playerScript.currentRoom;
 
-        Vector3 roomCenter = currentRoom.GetComponent<Renderer>().bounds.center;
-        float roomWidth = currentRoom.GetComponent<Renderer>().bounds.size.x;
+        Vector3 roomCenter = currentRoom.GetComponent<MeshRenderer>().bounds.center;
+        float roomWidth = currentRoom.GetComponent<MeshRenderer>().bounds.size.x;
         if (transform.position.x != roomCenter.x || transform.position.y != roomCenter.y)
             MoveToPosition(new Vector3(roomCenter.x, roomCenter.y, transform.position.z));
     }
