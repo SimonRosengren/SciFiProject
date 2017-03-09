@@ -131,7 +131,7 @@ CGINCLUDE
 		float rawDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, UnityStereoTransformScreenSpaceTex(i.uv_depth));
 		float dpth = Linear01Depth(rawDepth);
 		float4 wsDir = dpth * i.interpolatedRay;
-		float4 wsPos = _CameraWS + wsDir;
+		float4 wsPos = -_CameraWS + wsDir;
 
 		// Compute fog distance
 		float g = _DistanceParams.x;
