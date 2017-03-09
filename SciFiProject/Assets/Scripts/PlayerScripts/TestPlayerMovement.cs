@@ -30,9 +30,12 @@ public class TestPlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
-        if (Input.GetKeyDown (KeyCode.Space))
+        
+
+        if (Input.GetKeyDown (KeyCode.Space) && isGrounded)
         {
             rb.AddForce(0, 200, 0);
+            isGrounded = false;
         }
         if (Input.GetButtonUp("Grab"))
         {
@@ -45,6 +48,15 @@ public class TestPlayerMovement : MonoBehaviour
         transform.Translate(0, 0, x);
 
     }
+    
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Floor")
+        {
+            isGrounded = true;
+        }
+    }
+
     void FixedUpdate()
     {
 
