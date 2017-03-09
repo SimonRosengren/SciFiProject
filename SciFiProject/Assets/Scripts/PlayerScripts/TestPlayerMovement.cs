@@ -8,12 +8,13 @@ public class TestPlayerMovement : MonoBehaviour
     Vector3 direction;
 
     bool isGrounded;
+    float reach = 1;
 
     GameObject grabbedItem;
 
     public float speed;
     public float jumpPower;
-    public float reach = 200.3f;
+
 
     public GameObject currentRoom; //reference to the room currently used by the player
 
@@ -52,7 +53,6 @@ public class TestPlayerMovement : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        Debug.DrawRay(transform.position, fwd);
         if (Physics.Raycast(new Ray(transform.position, fwd), out hit, reach))
         {
             if (hit.transform.tag == "Grabable")
