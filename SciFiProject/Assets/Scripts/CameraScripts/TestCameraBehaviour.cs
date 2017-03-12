@@ -30,7 +30,10 @@ public class TestCameraBehaviour : MonoBehaviour {
     private void LateUpdate()
     {
         currentRoom = playerScript.currentRoom;
-
+        if (currentRoom.GetComponent<MeshRenderer>().Equals(null)) //To check so that the room actually have a mesh renderer
+        {
+            return;
+        }
         Vector3 roomCenter = currentRoom.GetComponent<MeshRenderer>().bounds.center;
         float roomWidth = currentRoom.GetComponent<MeshRenderer>().bounds.size.x;
         if (transform.position.x != roomCenter.x || transform.position.y != roomCenter.y)
